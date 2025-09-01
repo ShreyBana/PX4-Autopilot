@@ -2,13 +2,13 @@
 
 pkgs.stdenv.mkDerivation rec {
   pname = "gz-transport";
-  version = "14.0.1";
+  version = "13.4.1";
 
   src = pkgs.fetchFromGitHub {
     owner = "gazebosim";
     repo = "gz-transport";
-    rev = "gz-transport14";
-    hash = "sha256-wB+S1m4l+6X1Pw2jm6C+O5EgMF7kb9XNIv4sM6yXiDc=";
+    rev = "419d6b568c83d629cc055a4c0165fbc69d03880c";
+    hash = "sha256-VK4RSWuWlWd1Qps/LHM9n5UtHDr4Tb8LryX8GxHw2CM=";
   };
 
   # TODO: can be solved differently in cmake?
@@ -59,7 +59,6 @@ pkgs.stdenv.mkDerivation rec {
     ln -s $out/libexec/gz/transport${pkgs.lib.versions.major version}/gz-transport-service $out/bin/
     ln -s $out/libexec/gz/transport${pkgs.lib.versions.major version}/gz-transport-topic $out/bin/
   '';
-
 
   meta = with pkgs.lib; {
     maintainers = [ "Carlos Agüero <caguero@openrobotics.org>" ];

@@ -2,13 +2,13 @@
 
 pkgs.stdenv.mkDerivation rec {
   pname = "gz-plugin";
-  version = "3.0.1";
+  version = "2.0.4";
 
   src = pkgs.fetchFromGitHub {
     owner = "gazebosim";
     repo = "gz-plugin";
-    rev = "gz-plugin3";
-    hash = "sha256-Qn4G6hLFEaVQO02E0qL1yqkdGDNLz/a1dpy+jiYtNbY=";
+    rev = "25b10154cbe7a23e0bbf939fcc7cd63be39f70da";
+    hash = "sha256-T4hkOJLzkerC3HmG/lNJDFZXycbrRj/5tq6ILO2Lo64=";
   };
 
   # TODO: can be solved differently in cmake?

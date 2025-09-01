@@ -2,13 +2,13 @@
 
 pkgs.stdenv.mkDerivation rec {
   pname = "gz-common";
-  version = "6.0.2";
+  version = "5.7.1";
 
   src = pkgs.fetchFromGitHub {
     owner = "gazebosim";
     repo = "gz-common";
-    rev = "gz-common6";
-    hash = "sha256-Yx4c7tKauRNI11hOPx4oOQQNJtjKM700NgQP4w11UgU=";
+    rev = "09422362651531d6013e3c25f990e8b82bf9b592";
+    hash = "sha256-i0MJlbapQDVjb7RhfXao2XJWUYuET0AIw5xinvo5G+0=";
   };
 
   propagatedBuildInputs = with pkgs; [
@@ -22,6 +22,7 @@ pkgs.stdenv.mkDerivation rec {
     gz-cmake
     gz-math
     gz-utils
+    gts
   ];
 
   nativeBuildInputs = with pkgs; [

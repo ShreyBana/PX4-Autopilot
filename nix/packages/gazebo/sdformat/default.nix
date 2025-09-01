@@ -2,13 +2,13 @@
 
 pkgs.stdenv.mkDerivation {
   pname = "sdformat";
-  version = "15.2.0";
+  version = "14.8.0";
 
   src = pkgs.fetchFromGitHub {
     owner = "gazebosim";
     repo = "sdformat";
-    rev = "sdf15";
-    hash = "sha256-UG9tNrgHsqIraSxkWbh/tJmvQ0sUy6+zwUTFdMo0kls=";
+    rev = "a6cbe26aa81367412e88187349578fc4485b0b01";
+    hash = "sha256-ICH28nKcgXegu3t3Do1gb0ScyJ43ukHy7F/jLbLq/Dw=";
   };
 
   # TODO: https://github.com/gazebosim/gz-gui/pull/614 - can be solved differently?

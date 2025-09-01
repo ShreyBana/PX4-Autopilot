@@ -2,13 +2,15 @@
 
 pkgs.stdenv.mkDerivation {
   pname = "gz-gui";
-  version = "10.0.0";
+  version = "8.4.0";
 
   src = pkgs.fetchFromGitHub {
     owner = "gazebosim";
     repo = "gz-gui";
-    rev = "main";
-    hash = "sha256-JJNP0pImmDwWwIADDjb2HzQlGVznrQoqnifQeAXShHM=";
+    ## This rev is where the change the project name to `gz-gui` from `gz-gui10`.
+    ## Need by `gz-launch`.
+    rev = "ccace248522b36a5b15971013c9de5cf523b2831";
+    hash = "sha256-k/GlT/hdRbEFdQzYM+0x4gr6CXFu1MXLyez5br8uRG4=";
   };
 
   # TODO: can be solved differently in cmake?
@@ -49,9 +51,9 @@ pkgs.stdenv.mkDerivation {
     qt5.qtlocation
     qt5.qtpositioning
     qt5.qtdeclarative
-      # qt5.qtlabs.folderlistmodel
-      # qt5.qtlabs.platform
-      # qt5.qtlabs.settings
+    # qt5.qtlabs.folderlistmodel
+    # qt5.qtlabs.platform
+    # qt5.qtlabs.settings
   ];
 
   nativeBuildInputs = with pkgs; [

@@ -2,14 +2,16 @@
 
 pkgs.stdenv.mkDerivation rec {
   pname = "gz-launch";
-  version = "9.0.0";
+  version = "7.1.1";
 
   src = pkgs.fetchFromGitHub {
     owner = "gazebosim";
     repo = "gz-launch";
-    rev = "main";
-    hash = "sha256-Mw2kILEUEfzbglegGFi/UuKBcmxbydXN1SDb3AJLV44=";
+    rev = "246d180753c758445b7f1c11b3ae3b1840a65ae4";
+    hash = "sha256-8eUdanNdjZiuJT4L3nGE2IWM7olDCKrEdQEsgY9z2lU=";
   };
+
+  cmakeFlags = [];
 
   # TODO: https://github.com/gazebosim/gz-launch/pull/253 - can be solved differently?
   postPatch = ''

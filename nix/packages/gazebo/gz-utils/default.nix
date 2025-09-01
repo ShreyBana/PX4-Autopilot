@@ -2,16 +2,17 @@
 
 pkgs.stdenv.mkDerivation {
   pname = "gz-utils";
-  version = "3.1.1";
+  version = "2.2.1";
 
   src = pkgs.fetchFromGitHub {
     owner = "gazebosim";
     repo = "gz-utils";
-    rev = "gz-utils3";
-    hash = "sha256-wZvl+fi5Wk/x+Ss3CHvstHdUc8P67yMA8N7tsmd3Eug=";
+    rev = "53eaee7fcfeeff6ee02246bf412b0298eefc54c4";
+    hash = "sha256-ybPb8V2QFASi4WvXJl1xSr28BlBpfBjgoyx7MXkNVG4=";
   };
 
   propagatedBuildInputs = with pkgs; [
+    cli11
     spdlog
     gz-cmake
   ];

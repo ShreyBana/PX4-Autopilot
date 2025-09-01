@@ -2,13 +2,13 @@
 
 pkgs.stdenv.mkDerivation {
   pname = "gz-fuel-tools";
-  version = "10.0.1";
+  version = "9.1.1";
 
   src = pkgs.fetchFromGitHub {
     owner = "gazebosim";
     repo = "gz-fuel-tools";
-    rev = "gz-fuel-tools10";
-    hash = "sha256-J6PlHz2v51RHuG4ThuJjvN3Qha8eYzyrohugJhM6Uqs=";
+    rev = "512361d1876c65291bc44bacb06dc897a52c398c";
+    hash = "sha256-LdVKX1UpNmP+0DNOOZTTz7JFluJtDjOOazmtOCeghJ8=";
   };
 
   # TODO: can be solved differently in cmake?

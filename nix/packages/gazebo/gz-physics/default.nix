@@ -2,13 +2,13 @@
 
 pkgs.stdenv.mkDerivation {
   pname = "gz-physics";
-  version = "8.1.0";
+  version = "7.5.0";
 
   src = pkgs.fetchFromGitHub {
     owner = "gazebosim";
     repo = "gz-physics";
-    rev = "gz-physics8";
-    hash = "sha256-d1EqdwTiXLKRjmIMwA6EQF9oU3evpxLU+mejgN6K3/0=";
+    rev = "f29fd32a64036acec4482946be628b28ed5b08ed";
+    hash = "sha256-w8u28lAAOHvBjbBkdmUmNkg3zmTLHrXSAEJC7v/EtKg=";
   };
 
   propagatedBuildInputs = with pkgs; [

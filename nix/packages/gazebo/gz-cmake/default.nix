@@ -2,13 +2,13 @@
 
 pkgs.stdenv.mkDerivation {
   pname = "gz-cmake";
-  version = "4.1.1";
+  version = "3.5.5";
 
   src = pkgs.fetchFromGitHub {
     owner = "gazebosim";
     repo = "gz-cmake";
-    rev = "gz-cmake4";
-    hash = "sha256-OL8QMRt++UUSMxKaQmYZDgAOPxBfJZcpYzXNPyYMzNo=";
+    rev = "c59f1107b46e21df6e041c68af1d4a4124502a20";
+    hash = "sha256-uUYmDVyKN6LNBCbVj0qFvhLRH+tI3v33hcE5lStAiW0=";
   };
 
   nativeBuildInputs = with pkgs; [

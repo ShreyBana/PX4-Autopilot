@@ -2,13 +2,13 @@
 
 pkgs.stdenv.mkDerivation {
   pname = "gz-rendering";
-  version = "9.1.0";
+  version = "8.2.2";
 
   src = pkgs.fetchFromGitHub {
     owner = "gazebosim";
     repo = "gz-rendering";
-    rev = "gz-rendering9";
-    hash = "sha256-dqg9Zv3ty8qEI+NWHUmu8TzSw9R4K+lOUNS2ER344gY=";
+    rev = "47fcc78fb0254caab1426f5ad755e226af952990";
+    hash = "sha256-GtYb1gTwiGKtO4xJio7X+wV+BeXQv1OCG35bPHxeuUo=";
   };
 
   buildInputs = with pkgs; [

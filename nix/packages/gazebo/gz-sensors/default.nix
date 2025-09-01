@@ -2,13 +2,13 @@
 
 pkgs.stdenv.mkDerivation {
   pname = "gz-sensors";
-  version = "9.1.0";
+  version = "8.2.2";
 
   src = pkgs.fetchFromGitHub {
     owner = "gazebosim";
     repo = "gz-sensors";
-    rev = "gz-sensors9";
-    hash = "sha256-5V8QYI5swYGdDrqN56R96DIdD8Erl7IWgLBs8fj8HKc=";
+    rev = "520d266ec1737e1f74b36437d3b6b3eedff75efd";
+    hash = "sha256-9hiz4vmCHjfjsFM1r2eadyY3VZI8c4mz6BFvTYKrADQ=";
   };
 
   buildInputs = with pkgs; [

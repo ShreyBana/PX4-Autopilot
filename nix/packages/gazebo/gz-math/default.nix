@@ -2,13 +2,13 @@
 
 pkgs.stdenv.mkDerivation {
   pname = "gz-math";
-  version = "8.1.1";
+  version = "7.5.2";
 
   src = pkgs.fetchFromGitHub {
     owner = "gazebosim";
     repo = "gz-math";
-    rev = "gz-math8";
-    hash = "sha256-76cQOzk5Pot/RLzFmQyYoL/wVQgjAKAOnjl6e/KFvDk=";
+    rev = "ad7e7cddc729e509663f2c7695f9590ce4f6cc4f";
+    hash = "sha256-femdxrCUfQd5dJXN99sHdhSkGV9cVYNCfs7jktFeqhU=";
   };
 
   propagatedBuildInputs = with pkgs; [

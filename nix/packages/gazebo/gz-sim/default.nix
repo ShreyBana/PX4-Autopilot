@@ -1,14 +1,16 @@
-{ pkgs ? import <nixpkgs> {} }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 
 pkgs.stdenv.mkDerivation rec {
   pname = "gz-sim";
-  version = "10.0.0";
+  version = "8.9.0";
 
   src = pkgs.fetchFromGitHub {
     owner = "gazebosim";
     repo = "gz-sim";
-    rev = "main";
-    hash = "sha256-tKjEJ2iGCE26lG0Y6xDRcUrqbUt0CVR01zMiFOAEca0=";
+    rev = "3f8d77ba050b29b5cf4bc4a35da6009178812eaf";
+    hash = "sha256-MCOwizpWHznfNpU/u4mle/RlMfbJiU60C7VgoM8Vuzs=";
   };
 
   # TODO: https://github.com/gazebosim/gz-sim/pull/2358 - can be solved differently?
@@ -28,7 +30,7 @@ pkgs.stdenv.mkDerivation rec {
     cppzmq
     xorg.libXi.dev
     xorg.libXmu.dev
-    protobufc.dev
+    protobuf_21
     python311Packages.pybind11
     tinyxml-2
     util-linux # For uuid support.
@@ -54,17 +56,12 @@ pkgs.stdenv.mkDerivation rec {
     qt5.qtquickcontrols2
   ];
 
-  nativeBuildInputs =  with pkgs; [
+  nativeBuildInputs = with pkgs; [
     cmake
     pkg-config
     xorg.xvfb
     qt5.wrapQtAppsHook
   ];
-
-  postInstall = ''
-    mkdir -p $out/bin
-    ln -s $out/libexec/gz/sim${pkgs.lib.versions.major version}/gz-sim-model $out/bin/
-  '';
 
   meta = with pkgs.lib; {
     maintainers = [ "Michael Carroll <mjcarroll@intrinsic.ai>" ];
@@ -73,4 +70,3 @@ pkgs.stdenv.mkDerivation rec {
     mainProgram = "gz-sim-model";
   };
 }
-
