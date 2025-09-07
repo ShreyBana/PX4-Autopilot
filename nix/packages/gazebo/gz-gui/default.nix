@@ -1,6 +1,8 @@
-{ pkgs ? import <nixpkgs> {} }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 
-pkgs.stdenv.mkDerivation {
+pkgs.stdenv.mkDerivation rec {
   pname = "gz-gui";
   version = "8.4.0";
 
@@ -15,16 +17,20 @@ pkgs.stdenv.mkDerivation {
 
   # TODO: can be solved differently in cmake?
   postPatch = ''
-    # Fix library location path construction
+    ## There's code which joins this path w/ the install directory, but the variable
+    ## is already an absolute path(nix-store path).
+    # substituteInPlace include/gz/gui/CMakeLists.txt \
+    #   --replace-fail 'GZ_GUI_PLUGIN_RELATIVE_INSTALL_DIR="''${GZ_GUI_PLUGIN_RELATIVE_INSTALL_DIR}' \
+    #                  'GZ_GUI_PLUGIN_RELATIVE_INSTALL_DIR="lib/${pname}-${pkgs.lib.versions.major version}/plugins'
+    ## Fix library location path construction
     substituteInPlace src/cmd/CMakeLists.txt \
       --replace 'set(library_location "../../../' \
                 'set(library_location "'
   '';
 
-
   buildInputs = with pkgs; [
     cppzmq
-    protobuf
+    protobuf_21
     tinyxml-2
   ];
 
@@ -34,8 +40,8 @@ pkgs.stdenv.mkDerivation {
     "-DCMAKE_INSTALL_RPATH=\$ORIGIN/../lib"
   ];
 
-
   propagatedBuildInputs = with pkgs; [
+    gz-physics
     gz-common
     gz-math
     gz-msgs
@@ -69,4 +75,3 @@ pkgs.stdenv.mkDerivation {
     license = licenses.bsd3;
   };
 }
-

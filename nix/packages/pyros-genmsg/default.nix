@@ -1,8 +1,13 @@
-{ lib, fetchPypi, buildPythonPackage }:
+{
+  lib,
+  fetchPypi,
+  python312Packages,
+}:
 
-buildPythonPackage rec {
+python312Packages.buildPythonPackage rec {
   pname = "pyros_genmsg";
   version = "0.5.8";
+  format = "setuptools";
   src = fetchPypi {
     inherit pname version;
     sha256 = "sha256-PBywfZxA+eYIcph+7Jg6rFvbWSDqd5gDA/scRsMI9Hg=";
@@ -15,5 +20,3 @@ buildPythonPackage rec {
     license = licenses.lgpl21Only;
   };
 }
-
-

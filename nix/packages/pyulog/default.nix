@@ -1,9 +1,10 @@
-{ lib, fetchPypi, buildPythonPackage, pythonPackages }:
+{ lib, fetchPypi, python312Packages }:
 
-buildPythonPackage rec {
+python312Packages.buildPythonPackage rec {
   pname = "pyulog";
   version = "1.2.0";
-  buildInputs = with pythonPackages; [
+  format = "setuptools";
+  buildInputs = with python312Packages; [
     numpy
   ];
   src = fetchPypi {

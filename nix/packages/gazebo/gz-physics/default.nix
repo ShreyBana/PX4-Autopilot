@@ -13,6 +13,7 @@ pkgs.stdenv.mkDerivation {
 
   propagatedBuildInputs = with pkgs; [
     eigen
+    dartsim
     # libdart / dartsim TODO
     # gz-physics> -- -------------------------------------------
     # gz-physics> CMake Warning at /nix/store/11s1rpm3qx0gg6vjb1zvky4afrja17iv-gz-cmake-4.1.1/share/cmake/gz-cmake4/cmake4/GzConfigureBuild.cmake:59 (message):

@@ -33,7 +33,7 @@ pkgs.stdenv.mkDerivation rec {
     zlib
     cppzmq
     sqlite.dev
-    protobuf
+    protobuf_21
     python3Packages.pybind11
     python3
     python3Packages.psutil

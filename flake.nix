@@ -7,7 +7,7 @@
   description = "PX4 Development Environment";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs?rev=aefcb0d50d1124314429a11ed6b7aaaedf2861c5";
   };
 
   outputs = { self, nixpkgs }: let
@@ -122,8 +122,8 @@
           p.argcomplete
           p.cerberus
           p.coverage
-          (p.callPackage ./nix/packages/empy {})
-          p.future
+          (pkgs.callPackage ./nix/packages/empy {})
+          # p.future
           p.jinja2
           p.jsonschema
           p.kconfiglib
@@ -138,9 +138,9 @@
           p.pygments
           p.wheel
           p.pymavlink
-          (p.callPackage ./nix/packages/pyros-genmsg {})
+          (pkgs.callPackage ./nix/packages/pyros-genmsg {})
           p.pyserial
-          (p.callPackage ./nix/packages/pyulog {})
+          (pkgs.callPackage ./nix/packages/pyulog {})
           p.pyyaml
           p.requests
           p.setuptools

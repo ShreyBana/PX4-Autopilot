@@ -1,8 +1,9 @@
-{ lib, fetchPypi, buildPythonPackage }:
+{ lib, fetchPypi, python312Packages }:
 
-buildPythonPackage rec {
+python312Packages.buildPythonPackage rec {
   pname = "empy";
   version = "3.3.4";
+  format = "setuptools";
   src = fetchPypi {
     inherit pname version;
     sha256 = "c6xJeFtgFHnfTqGKfHm8EwSop8NMArlHLPEgauiPAbM=";

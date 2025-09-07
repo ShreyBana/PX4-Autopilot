@@ -63,6 +63,10 @@ pkgs.stdenv.mkDerivation rec {
     qt5.wrapQtAppsHook
   ];
 
+  postInstall = ''
+    ln -s $out/lib/${pname}-${pkgs.lib.versions.major version}/plugins $out/plugins
+  '';
+
   meta = with pkgs.lib; {
     maintainers = [ "Michael Carroll <mjcarroll@intrinsic.ai>" ];
     description = "Gazebo Simulator utilities";
