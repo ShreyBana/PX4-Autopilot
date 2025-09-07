@@ -63,7 +63,7 @@
               );
             in
             pkgs.mkShell {
-              buildInputs = [ pyEnv ];
+              packages = [ pyEnv ];
             };
         };
     };
