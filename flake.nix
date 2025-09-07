@@ -20,46 +20,51 @@
           ...
         }:
         {
-          devShells.default = pkgs.mkShell {
-            buildInputs = with pkgs.python312Packages; [
-              argcomplete
-              cerberus
-              coverage
-              ## Incompitble version in nixpkgs.
-              # empy
-              (pkgs.callPackage ./nix/empy.nix { pyPkgs = pkgs.python312Packages; })
-              future
-              jinja2
-              jsonschema
-              kconfiglib
-              lxml
-              matplotlib
-              numpy
-              nunavut
-              packaging
-              pandas
-              pkgconfig
-              psutil
-              pygments
-              wheel
-              pymavlink
-              # pyros-genmsg
-              (pkgs.callPackage ./nix/pyros-genmsg.nix { pyPkgs = pkgs.python312Packages; })
-              pyserial
-              # pyulog
-              (pkgs.callPackage ./nix/pyulog.nix { pyPkgs = pkgs.python312Packages; })
-              pyyaml
-              requests
-              setuptools
-              six
-              toml
-              sympy
-              pycryptodome
-              lark
-              python-lsp-server
-            ];
-          };
+          devShells.default =
+            let
+              pyEnv = pkgs.python312.withPackages (
+                p: with p; [
+                  argcomplete
+                  cerberus
+                  coverage
+                  ## Incompitble version in nixpkgs.
+                  # empy
+                  (pkgs.callPackage ./nix/empy.nix { pyPkgs = pkgs.python312Packages; })
+                  future
+                  jinja2
+                  jsonschema
+                  kconfiglib
+                  lxml
+                  matplotlib
+                  numpy
+                  nunavut
+                  packaging
+                  pandas
+                  pkgconfig
+                  psutil
+                  pygments
+                  wheel
+                  pymavlink
+                  # pyros-genmsg
+                  (pkgs.callPackage ./nix/pyros-genmsg.nix { pyPkgs = pkgs.python312Packages; })
+                  pyserial
+                  # pyulog
+                  (pkgs.callPackage ./nix/pyulog.nix { pyPkgs = pkgs.python312Packages; })
+                  pyyaml
+                  requests
+                  setuptools
+                  six
+                  toml
+                  sympy
+                  pycryptodome
+                  lark
+                  python-lsp-server
+                ]
+              );
+            in
+            pkgs.mkShell {
+              buildInputs = [ pyEnv ];
+            };
         };
-      flake = {};
     };
 }
