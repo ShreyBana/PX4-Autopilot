@@ -1,7 +1,8 @@
 {
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    gz-overlay.url = "github:shreybana/gazebo-sim-overlay/use-protobuf-21";
+    nixpkgs.url = "github:NixOS/nixpkgs/25.05";
   };
   outputs =
     inputs@{ flake-parts, ... }:
@@ -10,61 +11,72 @@
       ];
       systems = [
         "x86_64-linux"
-        "aarch64-linux"
-        "aarch64-darwin"
-        "x86_64-darwin"
       ];
       perSystem =
         {
           pkgs,
+          system,
           ...
         }:
+        let
+          pyEnv = pkgs.python312.withPackages (
+            p: with p; [
+              argcomplete
+              cerberus
+              coverage
+              ## Incompitble version in nixpkgs.
+              (pkgs.callPackage ./nix/empy.nix { pyPkgs = pkgs.python312Packages; })
+              future
+              jinja2
+              jsonschema
+              kconfiglib
+              lxml
+              matplotlib
+              numpy
+              nunavut
+              packaging
+              pandas
+              pkgconfig
+              psutil
+              pygments
+              wheel
+              pymavlink
+              (pkgs.callPackage ./nix/pyros-genmsg.nix { pyPkgs = pkgs.python312Packages; })
+              pyserial
+              (pkgs.callPackage ./nix/pyulog.nix { pyPkgs = pkgs.python312Packages; })
+              pyyaml
+              requests
+              setuptools
+              six
+              pyyaml
+              toml
+              sympy
+              pycryptodome
+              lark
+              python-lsp-server
+            ]
+          );
+          libs = with pkgs; [
+            libuuid
+            protobuf3_21
+            cppzmq
+            tinyxml-2
+            eigen
+            qt5.full
+            ffmpeg-headless
+            opencv
+          ];
+        in
         {
-          devShells.default =
-            let
-              pyEnv = pkgs.python312.withPackages (
-                p: with p; [
-                  argcomplete
-                  cerberus
-                  coverage
-                  ## Incompitble version in nixpkgs.
-                  # empy
-                  (pkgs.callPackage ./nix/empy.nix { pyPkgs = pkgs.python312Packages; })
-                  future
-                  jinja2
-                  jsonschema
-                  kconfiglib
-                  lxml
-                  matplotlib
-                  numpy
-                  nunavut
-                  packaging
-                  pandas
-                  pkgconfig
-                  psutil
-                  pygments
-                  wheel
-                  pymavlink
-                  # pyros-genmsg
-                  (pkgs.callPackage ./nix/pyros-genmsg.nix { pyPkgs = pkgs.python312Packages; })
-                  pyserial
-                  # pyulog
-                  (pkgs.callPackage ./nix/pyulog.nix { pyPkgs = pkgs.python312Packages; })
-                  pyyaml
-                  requests
-                  setuptools
-                  six
-                  toml
-                  sympy
-                  pycryptodome
-                  lark
-                  python-lsp-server
-                ]
-              );
-            in
-            pkgs.mkShell {
-              packages = [ pyEnv ];
-            };
+          devShells.default = pkgs.mkShell {
+            packages = [
+              pyEnv
+              pkgs.cmake
+              inputs.gz-overlay.legacyPackages.${system}.gz-harmonic
+              inputs.gz-overlay.legacyPackages.${system}.sdformat_14
+            ]
+            ++ libs;
+          };
         };
     };
 }
